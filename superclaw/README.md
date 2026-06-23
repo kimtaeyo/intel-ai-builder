@@ -125,3 +125,13 @@ users:read
 ```
 
 Minimal public-channel setup: `app_mentions:read`, `channels:read`, `chat:write`, and `users:read`. Add `channels:history` for channel context and [`chat:write.public`](https://docs.slack.dev/reference/scopes/chat:write.public) to send messages to public channels where @IntelSuperClaw is not a member. After installation, copy the bot token and app token into **Advanced > Channel > Slack**, then mention the bot in Slack to start using it.
+
+---
+
+## Known Issues
+- **SuperClaw installation can fail if hardware virtualization is disabled.** SuperClaw uses WSL2 for its AI backend, and WSL2 requires virtualization to be enabled in BIOS/UEFI. Enable Intel VT-x, Intel Virtualization Technology, AMD-V, or SVM Mode in your BIOS/UEFI settings, then restart Windows and run the installer again. On managed PCs, contact your IT administrator if the setting is locked.
+- **Installation can stop at around 10% if Windows WSL is corrupted.** SuperClaw uses WSL2 for its backend, and setup cannot continue if `wsl.exe` fails with `Wsl/CallMsi/Install/REGDB_E_CLASSNOTREG` or a "WSL installation appears to be corrupted" message. To confirm, run `wsl --status` in a terminal. To repair, open PowerShell as Administrator, run `wsl --install --no-distribution`, restart Windows, then run the SuperClaw installer again. If the repair command fails, run `wsl --update` as Administrator, restart, and try again.
+- **Initialization can fail with `owt.failed` when loopback traffic goes through a VPN or proxy.** OWT means OpenWork workspace token. SuperClaw creates it automatically after the sandbox is healthy. If health checks to `http://127.0.0.1:8787/health` return `403 Forbidden`, the token is not cached and initialization can end with `owt.failed`. Add `127.0.0.1`, `localhost`, and `::1` to your user `NO_PROXY` setting, keep any existing corporate entries, then stop SuperClaw and relaunch it from a new terminal. If it is still stuck, stop SuperClaw, run `wsl --shutdown`, and relaunch.
+- **Uninstall does not remove local user data.** SuperClaw user data may remain under `C:\Users\<user_id>\AppData\Local\SuperClaw\scbms` after uninstall.
+- **Local MCP servers must use HTTP or SSE transport.** Stdio-based MCP servers are not supported in the current release.
+
