@@ -61,7 +61,7 @@ Keys generated. They will be shown once below:
 
   Key            Value
  ------------------------------------------------------------
-  vllm_api_key   VjQyct_fyDjti48zoj82-BOGYF89y8traWASrDKlsyY
+  vllm_api_key   <your-api-key>
 
 Config saved to /root/.config/superclaw-ctl
 ```
@@ -86,9 +86,9 @@ The first start can take several minutes while the models load. When startup suc
 
 ```text
 Connection
-URL: http://192.168.52.102:8080
-vLLM Model Router: 192.168.52.102:8080
-Token: VjQy...
+URL: http://192.168.1.1:8080
+vLLM Model Router: 192.168.1.1:8080
+Token: <api-key>...
 ```
 
 Copy the **URL**. The **Token** shown by `up` is shortened, so do not use it as the Client App connection key. Use the full `vllm_api_key` from `init` or `superclaw-ctl keys show --reveal`.
