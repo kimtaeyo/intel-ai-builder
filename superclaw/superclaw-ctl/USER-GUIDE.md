@@ -15,7 +15,7 @@ Make sure the model-serving workstation has:
 
 | Requirement | Notes |
 |-------------|-------|
-| Linux x86_64 | Must run on the server host |
+| Ubuntu Linux x86_64 | Must run on the server host |
 | Docker Engine with Compose plugin | `docker compose` must work |
 | Intel GPU | Tested on Intel® Arc B70 Pro |
 | Internet access | Required on first setup to pull images and download models |
@@ -68,7 +68,7 @@ Config saved to /root/.config/superclaw-ctl
 
 Copy and save the full `vllm_api_key`. This is the **connection key** for the SuperClaw Client App.
 
-If you miss it, reveal it again later:
+If you miss it, you can reveal it again later:
 
 ```bash
 superclaw-ctl keys show --reveal
@@ -172,7 +172,7 @@ superclaw-ctl models download --verify
 superclaw-ctl models list
 superclaw-ctl models info Qwen3-Coder-Next
 superclaw-ctl models download
-superclaw-ctl models download --model Qwen3-Coder-Next
+superclaw-ctl models download --model qwen3-coder-next
 superclaw-ctl models download --verify
 ```
 
@@ -223,4 +223,4 @@ superclaw-ctl clean config
 superclaw-ctl clean all
 ```
 
-The models directory is not deleted by cleanup commands.
+Note: The models directory is not deleted by cleanup commands.
